@@ -200,3 +200,98 @@ The MVP is considered successful if:
 - Engineering decisions justified by measurable outcomes
 
 All future development phases must align with this document.
+
+---
+
+## Quick Start Guide
+
+### Start the Servers
+
+**Terminal 1: Backend Server**
+```bash
+cd backend
+pip install -r requirements.txt  # If not already installed
+python -m uvicorn app.main:app --reload --port 8000
+```
+
+You should see:
+```
+INFO:     Uvicorn running on http://127.0.0.1:8000
+INFO:     Application startup complete.
+```
+
+**Terminal 2: Frontend Server**
+```bash
+cd frontend
+npm install  # If not already installed
+npm run dev
+```
+
+You should see:
+```
+- ready started server on 0.0.0.0:3000
+```
+
+### Test in Browser
+
+1. Open http://localhost:3000 in your browser
+2. Try these example queries:
+
+**Trend Analysis:**
+- "What are the trends in artificial intelligence market?"
+- "What are the current trends in cloud computing?"
+
+**Comparison:**
+- "Compare AWS vs Azure cloud services"
+- "Compare SaaS vs PaaS market growth"
+
+**Explanation:**
+- "Explain the growth of electric vehicle market"
+- "Describe the cybersecurity market landscape"
+
+**General Research:**
+- "Market research on renewable energy"
+- "Analysis of fintech industry"
+
+### What to Look For
+
+✅ **Response Structure:**
+- Formatted output with sections (Summary, Findings, Implications, Recommendations)
+- Monospace font for readability
+
+✅ **Execution Details:**
+- All 4 agents listed: DataAgent, AnalysisAgent, SynthesisAgent, ValidatorAgent
+- Task focus displayed (trend_analysis, comparison, explanation, etc.)
+- Validation status (✓ Passed or ⚠ Needs improvement)
+- Data sources used
+
+✅ **Features:**
+- Loading state while processing
+- Error handling if backend is down
+- Enter key to submit
+- Disabled button when query is empty
+
+### Troubleshooting
+
+**Backend not connecting:**
+- Make sure backend is running on port 8000
+- Check http://localhost:8000/ in browser (should show `{"status":"ok"}`)
+
+**Frontend not loading:**
+- Make sure frontend is running on port 3000
+- Check browser console for errors
+
+**No response:**
+- Check backend terminal for error messages
+- Verify all dependencies are installed
+- Try the health check endpoint: http://localhost:8000/
+
+### API Testing (Alternative)
+
+You can also test directly via API:
+
+```bash
+curl -X POST http://localhost:8000/query/ \
+  -H "Content-Type: application/json" \
+  -d '{"query": "What are the trends in AI market?"}'
+```
